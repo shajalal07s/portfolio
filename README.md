@@ -105,10 +105,11 @@ PHP  ·  Laravel  ·  React.js
 ```
 portfolio/
 │
-├── index.html              ← Single-file portfolio (All-in-one)
-│   ├── <style>             ← All CSS (1100+ lines)
+├── final.html              ← Main single-file portfolio (All-in-one)
+│   ├── <style>             ← All CSS
 │   └── <script>            ← All JavaScript
-│
+├── index.html              ← Lightweight redirect to final.html
+├── .github/workflows/deploy.yml ← Auto-deploy workflow for GitHub Pages
 └── README.md               ← This file
 ```
 
@@ -255,16 +256,21 @@ python3 -m http.server 8000
 http://localhost:8000
 ```
 
-### Option 3 — Deploy to GitHub Pages
+### Option 3 — Deploy to GitHub Pages (Automatic)
 ```bash
+# Push this repository to GitHub (main branch)
 git init
 git add .
 git commit -m "feat: initial portfolio"
 git remote add origin https://github.com/USERNAME/portfolio.git
 git push -u origin main
+```
 
-# Then go to: Settings → Pages → Source: main / root
-# Live at: https://USERNAME.github.io/portfolio
+The included GitHub Actions workflow (`.github/workflows/deploy.yml`) automatically deploys `final.html` as `index.html` on GitHub Pages after each push to `main`.
+
+```text
+GitHub → Settings → Pages → Build and deployment: GitHub Actions
+Live URL: https://USERNAME.github.io/portfolio
 ```
 
 ---
